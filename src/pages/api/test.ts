@@ -7,7 +7,7 @@ export async function GET() {
   });
 }
 
-export const POST: APIRoute = async ({ request, params }) => {
+export const POST: APIRoute = async ({ request }) => {
   const body = await request.json();
   return new Response(JSON.stringify(body), {
     status: 200,

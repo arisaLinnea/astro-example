@@ -1,3 +1,16 @@
+# Astro comments
+
+`npm run dev`
+
+`astro add ... ` add frameworks like react, tailwind
+
+`npx astro sync` sometimes the need to re-sync everything
+
+- Uses page based routing
+- .astro-files
+
+https-problem in chrome -> try incognito window
+
 # Astro Starter Kit: Basics
 
 ```sh

@@ -1,0 +1,17 @@
+---
+import H1 from "../components/H1.astro";
+import Main from "../components/Main.astro";
+import MyReactComponent from "../components/MyReactComponent.tsx";
+import MySvelteComponent from "../components/MySvelteComponent.svelte";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="About">
+  <Main>
+    <H1 text="React & Svelte" />
+    <div class="grid grid-cols-2 gap-x-16 gap-y-14 max-md:grid-cols-1 mb-24">
+      <MyReactComponent />
+      <MySvelteComponent />
+    </div>
+  </Main>
+</Layout>
