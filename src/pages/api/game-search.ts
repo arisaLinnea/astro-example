@@ -18,6 +18,28 @@ export async function GET() {
 }
 
 export const POST: APIRoute = async ({ request }) => {
+  /*
+https://boardgamegeek.com/wiki/page/BGG_XML_API
+https://boardgamegeek.com/wiki/page/BGG_XML_API2
+
+
+https://docs.astro.build/en/guides/backend/supabase/
+
+
+
+<item type="boardgame" id="184013">
+<name type="primary" value="Alice in Wonderland (fan expansion for Ticket to Ride)"/>
+<yearpublished value="2015"/>
+</item>
+
+item type: item?.$?.type        boardgame, boardgameexpansion, (boardgameaccessory)
+item id: item?.$?.id
+name type: item?.name[0]?.$?.type     primary, alternate
+name value: item?.name[0]?.$?.value
+yearpublished value: item?.yearpublished[0]?.$?.value
+
+  */
+
   const { gameName } = await request.json();
   const searchName = gameName.replaceAll(" ", "+");
   const response = await fetch(
@@ -25,9 +47,11 @@ export const POST: APIRoute = async ({ request }) => {
   );
   const hotlist = await response.text();
   const parsedList = await parser.parseStringPromise(hotlist);
-  const namelist = parsedList?.items?.item.map((item) => {
-    return item?.name[0]?.$?.value;
-  });
+
+  const namelist = parsedList?.items?.item
+    .map((item) => item?.name[0]?.$?.value)
+    .filter((item) => !item.includes("fan expansion"));
+
   return new Response(JSON.stringify({ list: namelist }), {
     status: 200,
     headers: { "Content-Type": "application/json" },
