@@ -11,6 +11,10 @@
 
 https-problem in chrome -> try incognito window
 
+# SQLite and Drizzle comments
+
+`drizzle-kit generate:sqlite` generate the migration files
+
 # Astro Starter Kit: Basics
 
 ```sh

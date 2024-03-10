@@ -1,0 +1,1 @@
+ALTER TABLE boardgames ADD `category` json;

@@ -1,0 +1,27 @@
+{
+  "version": "5",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1709970983490,
+      "tag": "0000_bitter_nicolaos",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1710016788904,
+      "tag": "0001_closed_scarlet_witch",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1710017447419,
+      "tag": "0002_overrated_crystal",
+      "breakpoints": true
+    }
+  ]
+}

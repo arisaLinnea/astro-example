@@ -22,7 +22,7 @@ export const POST: APIRoute = async ({ request }) => {
 https://boardgamegeek.com/wiki/page/BGG_XML_API
 https://boardgamegeek.com/wiki/page/BGG_XML_API2
 
-
+https://itnext.io/using-mongodb-with-astro-5c9cf7f1be50
 https://docs.astro.build/en/guides/backend/supabase/
 
 
@@ -49,8 +49,10 @@ yearpublished value: item?.yearpublished[0]?.$?.value
   const parsedList = await parser.parseStringPromise(hotlist);
 
   const namelist = parsedList?.items?.item
-    .map((item) => item?.name[0]?.$?.value)
-    .filter((item) => !item.includes("fan expansion"));
+    .filter((item) => !item?.name[0]?.$?.value.includes("fan expansion"))
+    .map((item) => {
+      return { name: item?.name[0]?.$?.value, id: item?.$?.id };
+    });
 
   return new Response(JSON.stringify({ list: namelist }), {
     status: 200,
