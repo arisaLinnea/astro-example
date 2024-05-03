@@ -22,3 +22,8 @@ export type SearchItem = {
   id: number;
   name: string;
 };
+
+export type CategoryItem = {
+  id: number;
+  name: string;
+};

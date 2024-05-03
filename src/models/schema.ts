@@ -36,3 +36,8 @@ export const users = sqliteTable("users", {
   username: text("username").notNull(),
   password: text("password").notNull(),
 });
+
+export const categories = sqliteTable("categories", {
+  id: integer("id").primaryKey(),
+  name: text("name").notNull(),
+});

@@ -1,0 +1,14 @@
+---
+import Layout from "../layouts/Layout.astro";
+import H1 from "../components/H1.astro";
+import Main from "../components/Main.astro";
+import FindBestGame from "../components/FindBestGame";
+export const prerender = true;
+---
+
+<Layout title="My boardgames">
+  <Main>
+    <H1 text="Find a suitable game to play" />
+    <FindBestGame client:load />
+  </Main>
+</Layout>

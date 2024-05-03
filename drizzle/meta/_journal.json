@@ -22,6 +22,20 @@
       "when": 1710017447419,
       "tag": "0002_overrated_crystal",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1711221173767,
+      "tag": "0003_square_peter_quill",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1711447964674,
+      "tag": "0004_many_vanisher",
+      "breakpoints": true
     }
   ]
 }

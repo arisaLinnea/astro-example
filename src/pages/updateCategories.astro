@@ -1,0 +1,14 @@
+---
+import Layout from "../layouts/Layout.astro";
+import H1 from "../components/H1.astro";
+import Main from "../components/Main.astro";
+import ChangeCategories from "../components/ChangeCategories";
+export const prerender = true;
+---
+
+<Layout title="My boardgames">
+  <Main>
+    <H1 text="Update the list of categories" />
+    <ChangeCategories client:load />
+  </Main>
+</Layout>
