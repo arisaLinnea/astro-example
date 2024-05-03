@@ -21,6 +21,7 @@ export type Game = {
 export type SearchItem = {
   id: number;
   name: string;
+  year: number;
 };
 
 export type CategoryItem = {

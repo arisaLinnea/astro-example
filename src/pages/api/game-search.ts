@@ -1,6 +1,7 @@
 import xml2js from "xml2js";
 const parser = new xml2js.Parser();
 import type { APIRoute } from "astro";
+import { year } from "drizzle-orm/mysql-core";
 
 export async function GET() {
   const response = await fetch(
@@ -49,12 +50,16 @@ yearpublished value: item?.yearpublished[0]?.$?.value
   const parsedList = await parser.parseStringPromise(hotlist);
 
   const namelist = parsedList?.items?.item
-    .filter((item) => !item?.name[0]?.$?.value.includes("fan expansion"))
+    ?.filter((item) => !item?.name[0]?.$?.value.includes("fan expansion"))
     .map((item) => {
-      return { name: item?.name[0]?.$?.value, id: item?.$?.id };
+      return {
+        name: item?.name[0]?.$?.value,
+        id: item?.$?.id,
+        year: item?.yearpublished[0]?.$?.value,
+      };
     });
 
-  return new Response(JSON.stringify({ list: namelist }), {
+  return new Response(JSON.stringify({ list: namelist ? namelist : [] }), {
     status: 200,
     headers: { "Content-Type": "application/json" },
   });

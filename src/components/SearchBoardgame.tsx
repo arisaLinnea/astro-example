@@ -90,6 +90,7 @@ const SearchBoardgame = () => {
               Add
             </button>
             <span>{game.name}</span>
+            <span> - {game.year}</span>
           </div>
         );
       })}
