@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
-import type { Boardgame, Game, SearchItem } from "../models/types";
-import MyBoardgames from "./MyBoardgames";
+import React, { useState } from "react";
+import type { SearchItem } from "../models/types";
 
 const SearchBoardgame = () => {
   const [games, setGames] = useState<SearchItem[]>([]);
-  const [myGames, setMyGames] = useState<Boardgame[]>([]);
   const [gameName, setGameName] = useState("");
 
   const fetchGames = () => {
@@ -32,34 +30,10 @@ const SearchBoardgame = () => {
       .catch((error) => console.log(error));
   };
 
-  const fetchMyGames = () => {
-    fetch("/api/game-db", {
-      method: "GET",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setMyGames(data.list);
-        console.log(data.list);
-      })
-      .catch((error) => console.log(error));
-  };
-
   const buttonDisabled = gameName.length < 3;
-
-  useEffect(() => {
-    fetchMyGames();
-  }, []);
 
   return (
     <>
-      <main className="my-8 mx-auto max-w-2xl px-4">
-        <h1 className="text-2xl font-bold text-gray-900 mb-6">My Games</h1>
-        <ul className="list-none space-y-4">
-          {myGames?.map((game) => (
-            <MyBoardgames boardgame={game} />
-          ))}
-        </ul>
-      </main>
       <h1>Search Boardgame (from BoardGameGeek)</h1>
       <div>
         <span>Antal träffar: </span>

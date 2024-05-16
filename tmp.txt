@@ -1,0 +1,26 @@
+<footer className="mt-2">
+                <div>
+                  <cite className="font-medium">{boardgame.year}</cite>
+                </div>
+                <div>
+                  Recommended players:{" "}
+                  <cite className="font-medium">
+                    {boardgame.minplayers} - {boardgame.maxplayers}
+                  </cite>
+                </div>
+                <div>
+                  Playtime [min]:{" "}
+                  <cite className="font-medium">
+                    {boardgame.minplaytime} - {boardgame.maxplaytime}
+                  </cite>
+                </div>
+                <div>
+                  Recommended min age:{" "}
+                  <cite className="font-medium">{boardgame.minage}</cite>
+                </div>
+                <button className="" onClick={() => setShowModal(true)}>
+                  <span className="text-gray-800 text-lg font-semibold">
+                    Show more
+                  </span>
+                </button>
+              </footer>

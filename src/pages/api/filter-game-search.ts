@@ -13,8 +13,6 @@ import { SQL, gte, sql } from "drizzle-orm";
 export const POST = async ({ request }) => {
   const filter = await request.json();
 
-  console.log("Db search: ", filter);
-
   const sqlChunks: SQL[] = [];
   //   sqlChunks.push(sql`select * from boardgames`);
 
@@ -23,7 +21,6 @@ export const POST = async ({ request }) => {
   //   }
   if (filter.MinAge) {
     sqlChunks.push(sql`${boardgames.minage} <= ${filter.MinAge}`);
-    // query += `${boardgames.minage} <= ${filter.MinAge}`;
   }
 
   if (filter.NumPlayers) {
@@ -33,16 +30,13 @@ export const POST = async ({ request }) => {
     sqlChunks.push(
       sql`${boardgames.minplayers} <= ${filter.NumPlayers} and ${boardgames.maxplayers} >= ${filter.NumPlayers}`
     );
-    // query += `${boardgames.minplayers} <= ${filter.NumPlayers} and ${boardgames.maxplayers} >= ${filter.NumPlayers}`;
   }
 
-  const finalSql: SQL = sql.fromList(sqlChunks);
-
-  console.log("Final SQL: ", finalSql);
+  const finalSql: SQL = sql.join(sqlChunks);
 
   const games = await db.select().from(boardgames).where(finalSql);
 
-  //   console.log("Games: ", games);
+  // console.log("Games: ", games);
 
   return new Response(JSON.stringify({ list: games }), {
     status: 200,

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { Boardgame } from "../models/types";
 
 // type FilterItem = {
 //   name: string;
@@ -16,7 +17,7 @@ const FindBestGame = () => {
   const playersList = [...Array(10).keys()].map((x) => x++);
   const [playerValue, setPlayerValue] = useState<number>(0);
   const playtime = [...Array(10).keys()].map((x) => x * 15);
-  const [games, setGames] = useState([]);
+  const [games, setGames] = useState<Boardgame[]>([]);
   // const [searchOptions, setSearchOptions] = useState<FilterItem[]>([]);
   const [searchOptions, setSearchOptions] = useState<FilterItem>({});
 
@@ -33,25 +34,15 @@ const FindBestGame = () => {
       .catch((error) => console.log(error));
   };
   const removeSearchOption = (name: string) => {
-    // const newOptions = searchOptions.filter((option) => option.name !== name);
-    // setSearchOptions(newOptions);
     setSearchOptions({ ...searchOptions, [name]: undefined });
   };
 
   const addSearchOption = (name: string, value: number) => {
     setSearchOptions({ ...searchOptions, [name]: value });
-    // const existingOption = searchOptions.find((option) => option.name === name);
-    // if (existingOption) {
-    //   const newOptions = searchOptions.map((option) =>
-    //     option.name === name ? { name, value } : option
-    //   );
-    //   setSearchOptions(newOptions);
-    // } else {
-    //   // setSearchOptions([...searchOptions, { name, value }]);
-    // }
   };
 
   const renderTag = ({ name, value }) => {
+    console.log("renderTag:", name);
     return (
       <span
         id="badge-dismiss-default"
@@ -104,7 +95,10 @@ const FindBestGame = () => {
               id="age"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               value={ageValue}
-              onChange={(e) => setAgeValue(Number(e.target.value))}
+              onChange={(e) => {
+                setAgeValue(Number(e.target.value));
+                addSearchOption("MinAge", Number(e.target.value));
+              }}
             >
               {ageList.map((item) => (
                 <option key={item} value={item}>
@@ -112,13 +106,16 @@ const FindBestGame = () => {
                 </option>
               ))}
             </select>
-            <button
+            {/* <button
               className="text-white bg-blue-700 hover:bg-blue-800 rounded-lg text-sm py-2 px-5 mt-4 ml-5 disabled:opacity-75"
               type="submit"
-              onClick={() => addSearchOption("MinAge", ageValue)}
+              onClick={() => {
+                console.log("Set minage: ", ageValue);
+                addSearchOption("MinAge", ageValue);
+              }}
             >
               Filteroption
-            </button>
+            </button> */}
           </div>
         </div>
 
@@ -131,7 +128,10 @@ const FindBestGame = () => {
               id="players"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               value={playerValue}
-              onChange={(e) => setPlayerValue(Number(e.target.value))}
+              onChange={(e) => {
+                setPlayerValue(Number(e.target.value));
+                addSearchOption("NumPlayers", Number(e.target.value));
+              }}
             >
               {playersList.map((item) => (
                 <option key={item} value={item}>
@@ -139,13 +139,13 @@ const FindBestGame = () => {
                 </option>
               ))}
             </select>
-            <button
+            {/* <button
               className="text-white bg-blue-700 hover:bg-blue-800 rounded-lg text-sm py-2 px-5 mt-4 ml-5 disabled:opacity-75"
               type="submit"
               onClick={() => addSearchOption("NumPlayers", playerValue)}
             >
               Filteroption
-            </button>
+            </button> */}
           </div>
         </div>
         <div className="flex flex-wrap gap-2 my-5">
@@ -164,6 +164,17 @@ const FindBestGame = () => {
           Search
         </button>
       </main>
+      <div className="mb-10">
+        {games?.map((game) => (
+          <div className="flex flex-row gap-2">
+            <span>{game.name}</span>
+            <span>{game.minage}</span>
+            <span>
+              {game.minplayers}-{game.maxplayers} players
+            </span>
+          </div>
+        ))}
+      </div>
     </>
   );
 };

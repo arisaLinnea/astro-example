@@ -2,11 +2,13 @@
 import Layout from "../layouts/Layout.astro";
 import H1 from "../components/H1.astro";
 import Main from "../components/Main.astro";
+import MyGames from "../components/MyGames";
 export const prerender = true;
 ---
 
 <Layout title="Welcome to Astro.">
   <Main>
-    <H1 text="Test Astro" />
+    <H1 text="My boardgames" />
+    <MyGames client:load />
   </Main>
 </Layout>

@@ -12,7 +12,7 @@ const GameModal = ({ setShowModal, boardgame }: Props) => {
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
         <div className="relative w-auto my-6 mx-auto max-w-3xl">
           {/*content*/}
-          <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+          <div className="max-h-[calc(100vh-12rem)] overflow-y-auto border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             {/*header*/}
             <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
               <h3 className="text-3xl font-semibold">{boardgame.name}</h3>
@@ -24,6 +24,27 @@ const GameModal = ({ setShowModal, boardgame }: Props) => {
                   ×
                 </span>
               </button>
+            </div>
+            <div className="p-5 border-b border-solid border-blueGray-200 rounded-t">
+              <div>
+                Released: <cite className="font-medium">{boardgame.year}</cite>
+              </div>
+              <div>
+                Recommended players:{" "}
+                <cite className="font-medium">
+                  {boardgame.minplayers} - {boardgame.maxplayers}
+                </cite>
+              </div>
+              <div>
+                Playtime [min]:{" "}
+                <cite className="font-medium">
+                  {boardgame.minplaytime} - {boardgame.maxplaytime}
+                </cite>
+              </div>
+              <div>
+                Recommended min age:{" "}
+                <cite className="font-medium">{boardgame.minage}</cite>
+              </div>
             </div>
             {/*body*/}
             <div className="relative p-6 flex-auto">

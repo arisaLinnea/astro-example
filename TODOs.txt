@@ -1,0 +1,6 @@
+1. Flytta mina spel till egen sida
+2. När man trycker på ett spel i söklistan, hämtas mer info? i modal, 
+    och man får verifiera att man vill lägga till den.
+3. På filtersöken, ta bort blå filteroption-knappen, och lägg till den 
+    i filtret när man väljer i dropp-downlistan
+4. Gör egna spel till en tabell med bara bild och namn.
